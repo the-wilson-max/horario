@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bienvenido, Profesor</title>
+    <link rel="stylesheet" href="css/inicio.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+  </head>
+  <body>
+    <div class="main-layout">
+      <div class="inicio-content">
+        <h1 class="inicio-title">¡Bienvenido, Profesor!</h1>
+        <div class="cuadros-container">
+          <div class="cuadro-info">
+            <div class="icono"><i class="bi bi-clock"></i></div>
+            <div>
+              <div class="cuadro-label">Hora actual</div>
+              <div class="cuadro-dato" id="hora-actual">17:27:36</div>
+            </div>
+          </div>
+          <div class="cuadro-info">
+            <div class="icono"><i class="bi bi-calendar-event"></i></div>
+            <div>
+              <div class="cuadro-label">Fecha</div>
+              <div class="cuadro-dato" id="fecha-actual">
+                Miércoles, 11 de junio de 2025
+              </div>
+            </div>
+          </div>
+          <div class="cuadro-info">
+            <div class="icono"><i class="bi bi-thermometer-half"></i></div>
+            <div>
+              <div class="cuadro-label">Temperatura</div>
+              <div class="cuadro-dato" id="temperatura-actual">17.8 °C</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Nuevo: fila para cumpleaños y porcentaje género -->
+        <div class="row-cumple-genero">
+          <div class="birthday-box">
+            <div style="display: flex; align-items: center; gap: 1.2rem">
+              <span class="birthday-icon"><i class="bi bi-cake2"></i></span>
+              <div>
+                <div class="cuadro-label" style="color: #eee; font-weight: 400">
+                  Próximo cumpleaños
+                </div>
+                <div
+                  style="
+                    font-size: 2rem;
+                    font-weight: 700;
+                    letter-spacing: 0.01em;
+                    color: #fff;
+                    text-transform: none;
+                  "
+                >
+                  wilson andre romucho hernandez
+                </div>
+                <div class="cumple-fecha">
+                  <i class="bi bi-calendar2-event"></i> 28/5
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="porcentaje-genero">
+            <div class="porcentaje-circulo">
+              <svg width="96" height="96">
+                <circle
+                  cx="48"
+                  cy="48"
+                  r="44"
+                  stroke="#222c45"
+                  stroke-width="8"
+                  fill="none"
+                />
+                <circle
+                  cx="48"
+                  cy="48"
+                  r="44"
+                  stroke="#4f8cff"
+                  stroke-width="8"
+                  fill="none"
+                  stroke-dasharray="276"
+                  stroke-dashoffset="138"
+                  stroke-linecap="round"
+                  style="transition: stroke-dashoffset 1s"
+                />
+              </svg>
+              <div class="porcentaje-texto">50%</div>
+            </div>
+            <div class="porcentaje-descripcion">% Masculino / Femenino</div>
+            <div class="porcentaje-detalle">
+              <span style="color: #3498ff">M: 1</span> /
+              <span style="color: #ff6c6c">F: 1</span>
+            </div>
+          </div>
+        </div>
+        <!-- Fin fila cumpleaños+genero -->
+
+        <div class="extra-box">Gracias por tu dedicación, profe.</div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Perfil de Usuario</title>
+    <link rel="stylesheet" href="css/perfil.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+  </head>
+  <body>
+    <!-- BANNER/COVER -->
+    <div class="profile-cover" id="profile-cover">
+      <button id="btn-theme" class="theme-btn" title="Cambiar tema">
+        <i class="bi bi-brightness-high"></i>
+      </button>
+    </div>
+    <div class="profile-main-card">
+      <div class="profile-main-content animated-block">
+        <!-- Avatar y datos básicos -->
+        <div class="profile-info-left">
+          <div class="profile-avatar-glow">
+            <div class="profile-avatar" id="perfil-avatar"></div>
+          </div>
+          <div class="profile-username" id="perfil-nombre-usuario"></div>
+          <div class="profile-contact-list">
+            <button
+              class="profile-contact-btn"
+              title="Copiar email"
+              id="copy-email"
+            >
+              <i class="bi bi-envelope"></i> <span id="perfil-email"></span>
+            </button>
+            <button
+              class="profile-contact-btn"
+              title="Copiar DNI"
+              id="copy-dni"
+            >
+              <i class="bi bi-credit-card-2-front"></i>
+              <span id="perfil-dni"></span>
+            </button>
+            <button
+              class="profile-contact-btn"
+              title="Copiar Teléfono"
+              id="copy-tel"
+            >
+              <i class="bi bi-telephone"></i> <span id="perfil-telefono"></span>
+            </button>
+          </div>
+          <div class="profile-actions">
+            <button class="profile-edit-btn animated-btn" id="editar-perfil">
+              <i class="bi bi-pencil"></i> Editar perfil
+            </button>
+            <button class="profile-logout-btn" id="logout-perfil">
+              <i class="bi bi-box-arrow-right"></i> Cerrar sesión
+            </button>
+          </div>
+          <div class="profile-support">
+            <div class="support-title">
+              <i class="bi bi-info-circle"></i> Soporte
+            </div>
+            <div class="support-msg">
+              Si tiene algún problema comuníquese con
+              <b>Wilson André Romucho Hernández</b> al
+              <a href="tel:956937553" class="support-phone">956 937 553</a>
+            </div>
+          </div>
+        </div>
+        <!-- Info personal y minijuegos -->
+        <div class="profile-info-right">
+          <h2 class="profile-title">Información personal</h2>
+          <form id="form-perfil" class="profile-info-list" autocomplete="off">
+            <div>
+              <span>Nombre:</span>
+              <span id="perfil-nombre" class="perfil-campo-editable"></span>
+              <input
+                type="text"
+                class="perfil-input"
+                id="input-nombre"
+                style="display: none"
+                autocomplete="off"
+              />
+            </div>
+            <div>
+              <span>Apellido:</span>
+              <span id="perfil-apellido" class="perfil-campo-editable"></span>
+              <input
+                type="text"
+                class="perfil-input"
+                id="input-apellido"
+                style="display: none"
+                autocomplete="off"
+              />
+            </div>
+            <div>
+              <span>Fecha de nacimiento:</span>
+              <span id="perfil-fecha" class="perfil-campo-editable"></span>
+              <input
+                type="date"
+                class="perfil-input"
+                id="input-fecha"
+                style="display: none"
+                autocomplete="off"
+              />
+            </div>
+            <div>
+              <span>Género:</span>
+              <span id="perfil-genero" class="perfil-campo-editable"></span>
+              <select
+                class="perfil-input"
+                id="input-genero"
+                style="display: none"
+              >
+                <option value="">-</option>
+                <option value="Masculino">Masculino</option>
+                <option value="Femenino">Femenino</option>
+                <option value="Otro">Otro</option>
+              </select>
+            </div>
+            <div class="edit-actions" style="display: none" id="edit-actions">
+              <button
+                type="submit"
+                id="guardar-cambios"
+                class="quick-btn save-btn"
+              >
+                <i class="bi bi-save"></i> Guardar
+              </button>
+              <button
+                type="button"
+                id="cancelar-cambios"
+                class="quick-btn cancel-btn"
+              >
+                <i class="bi bi-x-circle"></i> Cancelar
+              </button>
+            </div>
+          </form>
+          <div
+            id="perfil-alert"
+            class="perfil-alert"
+            style="display: none"
+          ></div>
+          <!-- MINIGAMES -->
+          <div class="games-section">
+            <h3 class="games-title">
+              Mini Juegos <span class="emoji">🎮</span>
+            </h3>
+            <div class="games-grid">
+              <div class="game-card" data-game="tictactoe">
+                <div class="game-icon">❌⭕</div>
+                <div class="game-label">TicTacToe</div>
+              </div>
+              <div class="game-card" data-game="memory">
+                <div class="game-icon">🧠</div>
+                <div class="game-label">Memory</div>
+              </div>
+              <div class="game-card" data-game="snake">
+                <div class="game-icon">🐍</div>
+                <div class="game-label">Snake</div>
+              </div>
+              <div class="game-card" data-game="pong">
+                <div class="game-icon">🏓</div>
+                <div class="game-label">Pong</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- MODAL JUEGO -->
+    <div id="modal-game" class="modal-game">
+      <div class="modal-content animated-modal">
+        <span id="close-modal" class="close-modal">&times;</span>
+        <div id="game-title" class="game-modal-title"></div>
+        <div id="game-container"></div>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+    <script src="supabaseClient.js"></script>
+    <script src="js/minigames.js"></script>
+    <script>
+      // RENDER Y LÓGICA PERFIL
+      let perfilData = {};
+      function getInitials(nombre = "", apellido = "") {
+        if (!nombre && !apellido) return "?";
+        return (
+          (nombre[0] ? nombre[0].toUpperCase() : "") +
+          (apellido[0] ? apellido[0].toUpperCase() : "")
+        );
+      }
+      // Recibe datos desde dashboard
+      window.addEventListener("message", (event) => {
+        if (
+          !event.data ||
+          (event.data.type !== "perfil-data" &&
+            event.data.type !== "perfil-error")
+        )
+          return;
+        if (event.data.type === "perfil-error") {
+          document.getElementById("perfil-alert").textContent =
+            event.data.message;
+          document.getElementById("perfil-alert").style.display = "block";
+          return;
+        }
+        const data = event.data.data;
+        perfilData = data;
+        renderPerfil(data);
+      });
+
+      function renderPerfil(data) {
+        const nombre = data.nombre || "";
+        const apellido = data.apellido || "";
+        document.getElementById("perfil-avatar").textContent = getInitials(
+          nombre,
+          apellido
+        );
+        document.getElementById("perfil-nombre-usuario").textContent =
+          (nombre + " " + apellido).trim().toLowerCase().replace(/\s+/g, "-") ||
+          "-";
+        document.getElementById("perfil-nombre").textContent = nombre || "-";
+        document.getElementById("perfil-apellido").textContent =
+          apellido || "-";
+        document.getElementById("perfil-dni").textContent = data.dni || "-";
+        document.getElementById("perfil-telefono").textContent =
+          data.telefono || "-";
+        document.getElementById("perfil-fecha").textContent =
+          data.fecha_nacimiento || "-";
+        document.getElementById("perfil-genero").textContent =
+          data.genero || "-";
+        document.getElementById("perfil-email").textContent = data.email || "-";
+        // Inputs para editar
+        document.getElementById("input-nombre").value = nombre || "";
+        document.getElementById("input-apellido").value = apellido || "";
+        document.getElementById("input-fecha").value =
+          data.fecha_nacimiento || "";
+        document.getElementById("input-genero").value = data.genero || "";
+      }
+
+      // Copiar datos
+      document.addEventListener("DOMContentLoaded", function () {
+        function copyToClipboard(id) {
+          const text = document.getElementById(id).textContent;
+          navigator.clipboard.writeText(text);
+          const btn = document.getElementById(
+            "copy-" + id.replace("perfil-", "")
+          );
+          btn.classList.add("copied");
+          setTimeout(() => btn.classList.remove("copied"), 800);
+        }
+        document.getElementById("copy-email").onclick = () =>
+          copyToClipboard("perfil-email");
+        document.getElementById("copy-dni").onclick = () =>
+          copyToClipboard("perfil-dni");
+        document.getElementById("copy-tel").onclick = () =>
+          copyToClipboard("perfil-telefono");
+
+        // Cambiar tema
+        document.getElementById("btn-theme").onclick = function () {
+          document.body.classList.toggle("light-theme");
+          this.innerHTML = document.body.classList.contains("light-theme")
+            ? '<i class="bi bi-moon"></i>'
+            : '<i class="bi bi-brightness-high"></i>';
+        };
+
+        // Logout
+        document.getElementById("logout-perfil").onclick = function () {
+          localStorage.clear();
+          window.location.href = "index.html";
+        };
+      });
+
+      // EDITAR PERFIL
+      const editarBtn = document.getElementById("editar-perfil");
+      const formPerfil = document.getElementById("form-perfil");
+      const editActions = document.getElementById("edit-actions");
+      let editMode = false;
+      editarBtn.addEventListener("click", function () {
+        if (editMode) return;
+        editMode = true;
+        // Mostrar inputs
+        ["nombre", "apellido", "fecha", "genero"].forEach((id) => {
+          document.getElementById("perfil-" + id).style.display = "none";
+          document.getElementById("input-" + id).style.display = "";
+        });
+        editActions.style.display = "";
+      });
+      document
+        .getElementById("cancelar-cambios")
+        .addEventListener("click", function () {
+          // Ocultar inputs y restaurar campos
+          ["nombre", "apellido", "fecha", "genero"].forEach((id) => {
+            document.getElementById("perfil-" + id).style.display = "";
+            document.getElementById("input-" + id).style.display = "none";
+          });
+          editActions.style.display = "none";
+          editMode = false;
+        });
+      formPerfil.addEventListener("submit", async function (e) {
+        e.preventDefault();
+        // Obtener valores
+        const nombre = document.getElementById("input-nombre").value.trim();
+        const apellido = document.getElementById("input-apellido").value.trim();
+        const fecha = document.getElementById("input-fecha").value;
+        const genero = document.getElementById("input-genero").value;
+        // Llama a Supabase para actualizar (según tu clave primaria)
+        const { error } = await supabase
+          .from("usuarios")
+          .update({ nombre, apellido, fecha_nacimiento: fecha, genero })
+          .eq("id", perfilData.id);
+        if (error) {
+          document.getElementById("perfil-alert").textContent =
+            "Error al guardar cambios.";
+          document.getElementById("perfil-alert").style.display = "block";
+        } else {
+          // Actualiza local y oculta edición
+          perfilData.nombre = nombre;
+          perfilData.apellido = apellido;
+          perfilData.fecha_nacimiento = fecha;
+          perfilData.genero = genero;
+          renderPerfil(perfilData);
+          ["nombre", "apellido", "fecha", "genero"].forEach((id) => {
+            document.getElementById("perfil-" + id).style.display = "";
+            document.getElementById("input-" + id).style.display = "none";
+          });
+          editActions.style.display = "none";
+          editMode = false;
+          document.getElementById("perfil-alert").style.display = "none";
+        }
+      });
+    </script>
+  </body>
+</html>

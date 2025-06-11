@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Integrantes Registrados</title>
+    <link rel="stylesheet" href="css/integrantes.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="integrantes-container">
+      <h1 class="integrantes-title">Lista de Integrantes Registrados</h1>
+      <div class="table-responsive">
+        <table class="integrantes-table" id="tabla-integrantes">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Nombre</th>
+              <th>Apellido</th>
+              <th>DNI</th>
+              <th>Email</th>
+              <th>Teléfono</th>
+              <th>Fecha de nacimiento</th>
+              <th>Género</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Filas generadas dinámicamente -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+    <script src="supabaseClient.js"></script>
+    <script>
+      // Asume que tienes supabase configurado en supabaseClient.js
+      async function cargarIntegrantes() {
+        const { data, error } = await supabase
+          .from("usuarios")
+          .select("*")
+          .order("id", { ascending: true });
+        if (error) {
+          alert("Error al cargar los integrantes");
+          return;
+        }
+        const tbody = document.querySelector("#tabla-integrantes tbody");
+        tbody.innerHTML = "";
+        data.forEach((usuario, i) => {
+          const tr = document.createElement("tr");
+          tr.innerHTML = `
+          <td>${i + 1}</td>
+          <td>${usuario.nombre || "-"}</td>
+          <td>${usuario.apellido || "-"}</td>
+          <td>${usuario.dni || "-"}</td>
+          <td>${usuario.email || "-"}</td>
+          <td>${usuario.telefono || "-"}</td>
+          <td>${usuario.fecha_nacimiento || "-"}</td>
+          <td>${usuario.genero || "-"}</td>
+        `;
+          tbody.appendChild(tr);
+        });
+      }
+      document.addEventListener("DOMContentLoaded", cargarIntegrantes);
+    </script>
+  </body>
+</html>

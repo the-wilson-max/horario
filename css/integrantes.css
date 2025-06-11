@@ -1,0 +1,90 @@
+:root {
+  --primary: #4f8cff;
+  --background: #181c22;
+  --form-bg: #23283b;
+  --border-radius: 18px;
+  --text: #f2f3f7;
+  --muted: #b7bccc;
+  --shadow: 0 8px 40px 0 rgba(61, 80, 30, 0.21);
+  --accent: #6ec1e4;
+}
+
+body {
+  background: var(--background);
+  font-family: "Inter", Arial, sans-serif;
+  margin: 0;
+  color: var(--text);
+}
+
+.integrantes-container {
+  max-width: 1100px;
+  margin: 3rem auto 0 auto;
+  background: var(--form-bg);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  padding: 2.5rem 2.2rem 2.2rem 2.2rem;
+}
+
+.integrantes-title {
+  text-align: center;
+  color: var(--primary);
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 2.5rem;
+  letter-spacing: 0.03em;
+}
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.integrantes-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 auto;
+  background: transparent;
+}
+
+.integrantes-table th,
+.integrantes-table td {
+  padding: 0.85rem 1.1rem;
+  text-align: left;
+  border-bottom: 1px solid #2c3145;
+  font-size: 1.1rem;
+}
+
+.integrantes-table th {
+  background: #20232c;
+  color: var(--primary);
+  font-weight: bold;
+  font-size: 1.13rem;
+  letter-spacing: 0.02em;
+}
+
+.integrantes-table tr:nth-child(even) {
+  background: #23283b;
+}
+
+.integrantes-table tr:nth-child(odd) {
+  background: #1b2231;
+}
+
+.integrantes-table tr:hover {
+  background: #4f8cff18;
+  transition: background 0.2s;
+}
+
+@media (max-width: 700px) {
+  .integrantes-container {
+    padding: 1rem 0.3rem;
+  }
+  .integrantes-title {
+    font-size: 1.3rem;
+  }
+  .integrantes-table th,
+  .integrantes-table td {
+    padding: 0.5rem 0.4rem;
+    font-size: 0.98rem;
+  }
+}
