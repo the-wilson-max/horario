@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <title>Horario Profesor</title>
-
     <link rel="stylesheet" href="css/horario.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
@@ -30,24 +29,24 @@
           <button id="exportPDF" class="btn-exportar">
             <span class="material-icons">picture_as_pdf</span> Exportar PDF
           </button>
+          <button id="exportCSV" class="btn-exportar">
+            <span class="material-icons">table_view</span> Exportar CSV
+          </button>
+          <div class="import-csv-group">
+            <input type="file" id="importCSV" accept=".csv" />
+            <label for="importCSV" class="btn-importar-csv">
+              <span class="material-icons">upload_file</span>
+              Importar CSV
+              <span id="csvFileName" class="csv-file-name"></span>
+            </label>
+          </div>
         </div>
       </header>
       <main>
         <div class="tabla-horario-responsive">
           <table class="tabla-horario" id="tablaHorario">
-            <thead>
-              <tr>
-                <th>Hora</th>
-                <th>Lunes</th>
-                <th>Martes</th>
-                <th>Miércoles</th>
-                <th>Jueves</th>
-                <th>Viernes</th>
-              </tr>
-            </thead>
-            <tbody id="horarioBody">
-              <!-- Aquí se genera dinámicamente el horario -->
-            </tbody>
+            <thead id="horarioHead"></thead>
+            <tbody id="horarioBody"></tbody>
           </table>
         </div>
         <div class="leyenda">
@@ -57,10 +56,8 @@
         </div>
       </main>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <script src="supabaseClient.js"></script>
     <script src="js/horario.js"></script>
   </body>
 </html>

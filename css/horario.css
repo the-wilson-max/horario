@@ -1,27 +1,30 @@
 :root {
-  --primary: #4f8cff;
-  --background: #181c22;
-  --form-bg: #23283b;
-  --border-radius: 16px;
-  --text: #f2f3f7;
-  --muted: #b7bccc;
-  --shadow: 0 8px 40px 0 rgba(30, 40, 80, 0.13);
+  --primary: #00cba9;
+  --primary-dark: #009c7c;
+  --background: linear-gradient(120deg, #1e293b 0%, #0f172a 100%);
+  --form-bg: rgba(34, 41, 58, 0.85);
+  --glass: rgba(34, 41, 58, 0.55);
+  --border-radius: 20px;
+  --text: #f1f5f9;
+  --muted: #7dd3fc;
+  --shadow: 0 4px 40px 0 rgba(0, 0, 0, 0.3);
   --recreo: #ffe082;
-  --feriado: #f77;
-  --ausente: #aaa;
-
-  /* Colores para cursos */
-  --color-matematica: #ff8c85;
-  --color-comunicacion: #ffb347;
+  --feriado: #f87171;
+  --ausente: #64748b;
+  /* Cursos */
+  --color-matematica: #ff7d7d;
+  --color-comunicacion: #ffd36e;
   --color-cyt: #7ae67a;
-  --color-ingles: #80bfff;
-  --color-historia: #e491ff;
-  --color-arte: #ffb3de;
-  --color-ef: #6fd3c6;
+  --color-ingles: #7dd3fc;
+  --color-historia: #a78bfa;
+  --color-arte: #fbb6ce;
+  --color-ef: #6ee7b7;
   --color-religion: #ffe67a;
-  --color-computacion: #a0aeff;
-  --color-civica: #f7a78c;
+  --color-computacion: #a0b7ff;
+  --color-civica: #fb923c;
   --color-tutoria: #bdb6ff;
+  --color-dpcc: #e0b3ff;
+  --glass-blur: blur(12px);
 }
 
 body,
@@ -30,16 +33,19 @@ html {
   color: var(--text);
   margin: 0;
   font-family: "Inter", Arial, sans-serif;
+  min-height: 100vh;
 }
 
 .horario-layout {
   max-width: 1100px;
-  margin: 2rem auto;
+  margin: 2.5rem auto;
   background: var(--form-bg);
   border-radius: var(--border-radius);
   box-shadow: var(--shadow);
-  padding: 2rem 1.2rem 2.5rem 1.2rem;
-  animation: fadeIn 0.7s cubic-bezier(0.45, 1.14, 0.6, 1);
+  padding: 2.5rem 1.5rem 2.5rem 1.5rem;
+  backdrop-filter: var(--glass-blur);
+  animation: fadeIn 0.9s cubic-bezier(0.45, 1.14, 0.6, 1);
+  border: 1.5px solid rgba(255, 255, 255, 0.11);
 }
 
 @keyframes fadeIn {
@@ -56,11 +62,11 @@ html {
 .horario-header {
   display: flex;
   flex-direction: column;
-  gap: 1.2rem;
+  gap: 1.3rem;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 2rem;
-  animation: headerAppear 0.6s cubic-bezier(0.4, 1.1, 0.6, 1);
+  margin-bottom: 2.2rem;
+  animation: headerAppear 0.8s cubic-bezier(0.4, 1.1, 0.6, 1);
 }
 @keyframes headerAppear {
   from {
@@ -75,16 +81,20 @@ html {
 .horario-header h1 {
   color: var(--primary);
   margin: 0;
-  font-size: 2rem;
-  font-weight: bold;
+  font-size: 2.5rem;
+  font-weight: 800;
   letter-spacing: 0.02em;
-  text-shadow: 0 3px 16px #4f8cff33;
+  text-shadow: 0 8px 24px #00cba933;
+  background: linear-gradient(to right, var(--primary), #96fbc4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 .horario-controls {
   display: flex;
-  gap: 1.2rem;
+  gap: 1.3rem;
   flex-wrap: wrap;
   align-items: center;
+  justify-content: center;
 }
 .horario-controls label {
   font-size: 1.1rem;
@@ -92,102 +102,154 @@ html {
 }
 .horario-controls select {
   margin-left: 0.5rem;
-  padding: 0.2rem 0.7rem;
-  background: #23283b;
-  border-radius: 8px;
-  border: 1px solid #4f8cff44;
+  padding: 0.35rem 0.9rem;
+  background: rgba(30, 41, 59, 0.8);
+  border-radius: 11px;
+  border: 1.5px solid var(--primary);
   color: var(--text);
-  transition: box-shadow 0.15s;
+  font-size: 1.03rem;
+  font-weight: 500;
+  transition: box-shadow 0.18s, background 0.25s;
+  box-shadow: 0 2px 10px #00cba91c;
 }
+.horario-controls select:focus {
+  outline: none;
+  background: rgba(30, 41, 59, 0.92);
+  box-shadow: 0 0 0 3px #00cba977;
+}
+
 .btn-exportar {
   background: var(--primary);
   color: #fff;
   border: none;
-  padding: 0.7rem 1.5rem;
-  border-radius: 8px;
-  font-size: 1rem;
-  font-weight: 600;
+  padding: 0.8rem 1.7rem;
+  border-radius: 12px;
+  font-size: 1.08rem;
+  font-weight: 700;
   cursor: pointer;
   display: flex;
-  gap: 0.4rem;
+  gap: 0.45rem;
   align-items: center;
-  box-shadow: 0 2px 18px #4f8cff22;
-  transition: background 0.13s, box-shadow 0.2s;
+  box-shadow: 0 4px 20px #00cba933;
+  transition: background 0.18s, box-shadow 0.23s, transform 0.11s;
+  letter-spacing: 0.02em;
+  border: 1.5px solid #00cba980;
 }
-.btn-exportar:hover {
-  background: #2656a7;
-  box-shadow: 0 8px 24px #4f8cff33;
+.btn-exportar:hover,
+.btn-exportar:focus {
+  background: var(--primary-dark);
+  box-shadow: 0 8px 32px #00cba944, 0 1px 12px #fff2;
+  transform: translateY(-2px) scale(1.03);
 }
 
 .tabla-horario-responsive {
   overflow-x: auto;
   border-radius: var(--border-radius);
-  background: #1d232e;
+  background: var(--glass);
   box-shadow: 0 2px 18px #23283b33;
-  animation: fadeIn 0.7s cubic-bezier(0.45, 1.14, 0.6, 1);
+  animation: fadeIn 0.8s cubic-bezier(0.45, 1.14, 0.6, 1);
+  backdrop-filter: var(--glass-blur);
 }
 
 .tabla-horario {
-  border-collapse: collapse;
+  border-collapse: separate;
+  border-spacing: 0;
   width: 100%;
-  min-width: 800px;
+  min-width: 860px;
   background: transparent;
 }
 .tabla-horario th,
 .tabla-horario td {
-  border: 1px solid #26304b;
-  padding: 0.7rem 0.5rem;
-  font-size: 1rem;
+  border: 1.5px solid #00cba945;
+  padding: 1rem 0.6rem;
+  font-size: 1.07rem;
   text-align: center;
-  background: transparent;
-  transition: background 0.3s;
+  background: rgba(30, 41, 59, 0.92);
+  transition: background 0.22s, box-shadow 0.18s, color 0.14s;
+  position: relative;
 }
 .tabla-horario th {
-  background: #23283b;
+  background: linear-gradient(90deg, #1e293b 70%, #00cba91a 100%);
   color: var(--primary);
   font-weight: 700;
-  font-size: 1.04rem;
-  letter-spacing: 0.03em;
+  font-size: 1.08rem;
+  letter-spacing: 0.04em;
+  border-top: none;
+  border-bottom: 2.5px solid var(--primary);
+  text-shadow: 0 1.5px 12px #00cba957;
 }
 .tabla-horario td {
-  background: #23283b;
-  min-width: 120px;
-  position: relative;
-  transition: background 0.35s, box-shadow 0.22s;
+  min-width: 128px;
+  border-radius: 13px;
+  box-shadow: 0 2px 12px #00cba91a;
+  cursor: pointer;
+  z-index: 1;
+  overflow: hidden;
+  animation: cellIn 0.8s;
 }
+
+@keyframes cellIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.tabla-horario tr:hover > td:not(.celda-recreo) {
+  filter: brightness(1.04);
+  background: rgba(0, 203, 169, 0.06);
+  transition: background 0.18s;
+}
+
 .tabla-horario select,
 .tabla-horario .celda-estado {
-  width: 95%;
-  padding: 0.2rem;
-  border-radius: 5px;
-  border: 1px solid #4f8cff33;
-  background: #222b41;
+  width: 97%;
+  padding: 0.35rem 0.2rem;
+  border-radius: 7px;
+  border: 1.5px solid #00cba930;
+  background: #222b41e7;
   color: var(--text);
-  font-size: 0.97rem;
-  margin-bottom: 0.15rem;
+  font-size: 1.01rem;
+  margin-bottom: 0.13rem;
+  box-shadow: 0 1.5px 7px #00cba91a;
   transition: box-shadow 0.13s, background 0.2s;
+  outline: none;
+}
+.tabla-horario select:focus {
+  background: #293352;
+  box-shadow: 0 0 0 2px var(--primary);
 }
 .celda-estado {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 0.3rem;
+  gap: 0.32rem;
 }
 .celda-estado label {
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   color: var(--muted);
   cursor: pointer;
+  font-weight: 500;
 }
 .celda-estado input[type="checkbox"] {
   accent-color: var(--primary);
+  transform: scale(1.15);
+  margin-right: 2.5px;
+  transition: accent-color 0.18s;
 }
 
-/* Colores de celdas especiales */
 .celda-recreo {
   background: var(--recreo) !important;
   color: #23283b !important;
-  font-weight: 700;
-  animation: highlightRecreo 0.9s cubic-bezier(0.3, 1, 0.4, 1);
+  font-weight: 800;
+  font-size: 1.09rem;
+  animation: highlightRecreo 0.88s cubic-bezier(0.3, 1, 0.4, 1);
+  border: 1.5px solid #ffd36e;
+  box-shadow: 0 2px 12px #ffe08277;
 }
 @keyframes highlightRecreo {
   from {
@@ -201,7 +263,8 @@ html {
   background: var(--feriado) !important;
   color: #fff !important;
   font-weight: 700;
-  animation: highlightFeriado 0.9s cubic-bezier(0.3, 1, 0.4, 1);
+  animation: highlightFeriado 0.7s cubic-bezier(0.3, 1, 0.4, 1);
+  box-shadow: 0 2px 12px #f8717180;
 }
 @keyframes highlightFeriado {
   from {
@@ -215,7 +278,8 @@ html {
   background: var(--ausente) !important;
   color: #fff !important;
   font-weight: 700;
-  animation: highlightAusente 0.9s cubic-bezier(0.3, 1, 0.4, 1);
+  animation: highlightAusente 0.6s cubic-bezier(0.3, 1, 0.4, 1);
+  box-shadow: 0 2px 12px #64748b80;
 }
 @keyframes highlightAusente {
   from {
@@ -226,79 +290,87 @@ html {
   }
 }
 
-/* Curso-colores animados */
+/* Colores animados para cursos */
 .celda-curso-matematica {
   background: var(--color-matematica) !important;
   color: #fff !important;
-  animation: popColor 0.5s;
+  animation: popColor 0.6s;
 }
 .celda-curso-comunicacion {
   background: var(--color-comunicacion) !important;
-  color: #2a2a2a !important;
-  animation: popColor 0.5s;
+  color: #222 !important;
+  animation: popColor 0.6s;
 }
 .celda-curso-cyt {
   background: var(--color-cyt) !important;
   color: #254d25 !important;
-  animation: popColor 0.5s;
+  animation: popColor 0.6s;
 }
 .celda-curso-ingles {
   background: var(--color-ingles) !important;
   color: #073a7c !important;
-  animation: popColor 0.5s;
+  animation: popColor 0.6s;
 }
 .celda-curso-historia {
   background: var(--color-historia) !important;
-  color: #5c2173 !important;
-  animation: popColor 0.5s;
+  color: #4b2669 !important;
+  animation: popColor 0.6s;
 }
 .celda-curso-arte {
   background: var(--color-arte) !important;
   color: #7b2956 !important;
-  animation: popColor 0.5s;
+  animation: popColor 0.6s;
 }
 .celda-curso-ef {
   background: var(--color-ef) !important;
   color: #07544d !important;
-  animation: popColor 0.5s;
+  animation: popColor 0.6s;
 }
 .celda-curso-religion {
   background: var(--color-religion) !important;
   color: #8a7e1b !important;
-  animation: popColor 0.5s;
+  animation: popColor 0.6s;
 }
 .celda-curso-computacion {
   background: var(--color-computacion) !important;
   color: #0b1c4b !important;
-  animation: popColor 0.5s;
+  animation: popColor 0.6s;
 }
 .celda-curso-civica {
   background: var(--color-civica) !important;
   color: #6e2b17 !important;
-  animation: popColor 0.5s;
+  animation: popColor 0.6s;
 }
 .celda-curso-tutoria {
   background: var(--color-tutoria) !important;
   color: #2a2a2a !important;
-  animation: popColor 0.5s;
+  animation: popColor 0.6s;
+}
+.celda-curso-dpcc {
+  background: var(--color-dpcc) !important;
+  color: #222 !important;
+  animation: popColor 0.6s;
 }
 
 @keyframes popColor {
-  from {
-    transform: scale(0.96);
+  0% {
+    transform: scale(0.99);
   }
-  to {
+  60% {
+    transform: scale(1.09);
+  }
+  100% {
     transform: scale(1);
   }
 }
 
 /* Leyenda */
 .leyenda {
-  margin-top: 1.4rem;
-  font-size: 1rem;
+  margin-top: 1.7rem;
+  font-size: 1.08rem;
   color: var(--muted);
   display: flex;
-  gap: 2rem;
+  gap: 2.4rem;
   align-items: center;
 }
 .leyenda-ico {
@@ -306,8 +378,9 @@ html {
   width: 1.2em;
   height: 1.2em;
   border-radius: 50%;
-  margin-right: 0.25em;
+  margin-right: 0.27em;
   vertical-align: middle;
+  box-shadow: 0 1px 5px #fff2;
 }
 .leyenda-ico.recreo {
   background: var(--recreo);
@@ -322,10 +395,62 @@ html {
 /* Responsive */
 @media (max-width: 900px) {
   .horario-layout {
-    padding: 0.7rem 0.1rem 2rem 0.1rem;
+    padding: 1.3rem 0.2rem 2rem 0.2rem;
     border-radius: 0;
   }
   .tabla-horario {
-    min-width: 550px;
+    min-width: 600px;
   }
+}
+.import-csv-group {
+  position: relative;
+  display: inline-block;
+}
+
+#importCSV {
+  opacity: 0;
+  width: 0.1px;
+  height: 0.1px;
+  position: absolute;
+  z-index: -1;
+}
+
+.btn-importar-csv {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  padding: 0.8rem 1.7rem;
+  border-radius: 12px;
+  font-size: 1.08rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 20px #00cba933;
+  transition: background 0.18s, box-shadow 0.23s, transform 0.11s;
+  letter-spacing: 0.02em;
+  border: 1.5px solid #00cba980;
+  position: relative;
+}
+
+.btn-importar-csv:hover,
+.btn-importar-csv:focus {
+  background: var(--primary-dark);
+  box-shadow: 0 8px 32px #00cba944, 0 1px 12px #fff2;
+  transform: translateY(-2px) scale(1.03);
+}
+
+.csv-file-name {
+  margin-left: 1em;
+  color: var(--muted);
+  font-size: 0.97em;
+  font-weight: 400;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 160px;
+  text-overflow: ellipsis;
+  display: inline-block;
+  vertical-align: middle;
+  transition: color 0.2s;
 }
