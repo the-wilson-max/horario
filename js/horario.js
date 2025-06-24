@@ -10,15 +10,15 @@ const HORAS_MANANA = [
   "12:15 - 1:00",
 ];
 const HORAS_TARDE = [
-  "13:00 - 13:45",
-  "13:45 - 14:30",
-  "14:30 - 15:15",
-  "15:15 - 15:45", // recreo
-  "15:45 - 16:30",
-  "16:30 - 17:15",
-  "17:15 - 18:00",
+  "1:00 - 1:45",
+  "1:45 - 2:30",
+  "2:30 - 3:15",
+  "3:15 - 4:00", // recreo
+  "4:00 - 4:15",
+  "5:00 - 5:45",
+  "5:45 - 6:30",
 ];
-const BLOQUE_RECREO = 3;
+const BLOQUE_RECREO = 4;
 const SECCIONES_MANANA = ["1°A", "2°A", "3°A", "4°A", "5°A"];
 const SECCIONES_TARDE = ["1°B", "2°B", "3°C", "4°C", "5°C"];
 const PROFESORES = [

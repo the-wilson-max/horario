@@ -3,7 +3,7 @@ const sectionToFile = {
   inicio: "inicio.html",
   horario: "horario.html",
   perfil: "perfil.html",
-  integrantes: "integrantes.html", // <--- Cambia aquí el key a 'integrantes'
+  integrantes: "asignador.html", // <--- Cambia aquí el key a 'integrantes'
 };
 
 // Cambia el iframe según la sección seleccionada

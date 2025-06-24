@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Asignador Visual de Bloques</title>
+    <link rel="stylesheet" href="css/horario.css" />
+    <style>
+      /* ... el mismo CSS mejorado ... */
+      .calendar-grid {
+        display: grid;
+        grid-template-columns: 90px repeat(5, 1fr);
+        grid-auto-rows: 45px;
+        background: var(--glass);
+        border-radius: var(--border-radius);
+        box-shadow: var(--shadow);
+        margin: 2rem 0;
+        position: relative;
+        min-width: 600px;
+      }
+      .calendar-day {
+        text-align: center;
+        font-weight: 700;
+        color: var(--primary);
+        background: rgba(0, 203, 169, 0.13);
+        border-bottom: 2px solid var(--primary);
+        font-size: 1.17rem;
+        letter-spacing: 0.04em;
+        position: sticky;
+        top: 0;
+        z-index: 2;
+      }
+      .calendar-time {
+        color: var(--muted);
+        font-size: 1.08rem;
+        font-weight: 600;
+        padding: 0 0.4rem;
+        text-align: right;
+        border-bottom: 1px solid #233;
+        background: transparent;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+      }
+      .calendar-cell {
+        border-bottom: 1px solid #233;
+        border-right: 1px solid #222b41aa;
+        min-height: 45px;
+        background: rgba(30, 41, 59, 0.92);
+        position: relative;
+        transition: background 0.2s;
+      }
+      .calendar-cell:last-child {
+        border-right: none;
+      }
+      .calendar-block {
+        position: absolute;
+        left: 4px;
+        right: 4px;
+        border-radius: 10px;
+        padding: 0.3em 0.8em;
+        color: #fff;
+        font-size: 1em;
+        font-weight: 600;
+        z-index: 10;
+        opacity: 0.98;
+        box-shadow: 0 2px 10px #222c;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        cursor: pointer;
+        margin-top: 2px;
+        margin-bottom: 2px;
+        border: 2px solid #fff3;
+      }
+      .calendar-block .block-text {
+        font-size: 0.98em;
+        text-shadow: 0 1px 4px #0009;
+      }
+      .calendar-block .block-delete {
+        font-size: 0.87em;
+        margin-left: auto;
+        background: #fff2;
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+        padding: 0 0.39em;
+        cursor: pointer;
+        margin-top: 0.2em;
+      }
+      .calendar-btn-group {
+        display: flex;
+        gap: 1.1em;
+        justify-content: center;
+        margin-bottom: 1.5em;
+        flex-wrap: wrap;
+      }
+      .calendar-import-csv {
+        display: flex;
+        align-items: center;
+        gap: 0.5em;
+      }
+      .calendar-import-csv input[type="file"] {
+        display: none;
+      }
+      .csv-file-name {
+        margin-left: 0.8em;
+        color: var(--muted);
+        font-size: 0.97em;
+        font-weight: 400;
+        white-space: nowrap;
+        overflow: hidden;
+        max-width: 160px;
+        text-overflow: ellipsis;
+        display: inline-block;
+        vertical-align: middle;
+        transition: color 0.2s;
+      }
+      /* Modal */
+      .modal-bg {
+        position: fixed;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        background: #0005;
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .modal-content {
+        background: var(--form-bg);
+        border-radius: 16px;
+        padding: 2rem 2.4rem 1.2rem 2.4rem;
+        box-shadow: 0 8px 40px #0006;
+        min-width: 300px;
+        color: var(--text);
+        max-width: 95vw;
+      }
+      .modal-content label {
+        display: block;
+        margin-top: 0.8em;
+        margin-bottom: 0.15em;
+        font-weight: 600;
+        color: var(--primary);
+      }
+      .modal-content input,
+      .modal-content select {
+        width: 100%;
+        padding: 0.45em 0.5em;
+        border-radius: 9px;
+        border: 1.5px solid var(--primary);
+        background: #222b41e7;
+        color: var(--text);
+        font-size: 1.05em;
+      }
+      .modal-content .modal-actions {
+        margin-top: 1.3em;
+        display: flex;
+        justify-content: flex-end;
+        gap: 1em;
+      }
+      .modal-content .calendar-add-btn {
+        margin: 0;
+      }
+      .modal-content .cancel-btn {
+        background: #64748b;
+        color: #fff;
+        border: none;
+        border-radius: 10px;
+        padding: 0.62em 1.5em;
+        font-size: 1.08em;
+        font-weight: 600;
+        cursor: pointer;
+        margin-left: 0.7em;
+      }
+      .modal-content .cancel-btn:hover {
+        background: #475569;
+      }
+      @media (max-width: 900px) {
+        .calendar-grid {
+          min-width: 0;
+          font-size: 0.93em;
+        }
+        .modal-content {
+          padding: 1.2em !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="horario-layout">
+      <header class="horario-header">
+        <h1>Asignador Visual de Bloques</h1>
+        <div class="calendar-btn-group">
+          <button class="calendar-add-btn" id="addBlockBtn">
+            Agregar Clase
+          </button>
+          <button class="calendar-add-btn" id="exportCSVBtn">
+            Exportar CSV
+          </button>
+          <label class="calendar-import-csv">
+            <span
+              class="calendar-add-btn"
+              style="padding: 0.62em 1em; cursor: pointer"
+            >
+              Importar CSV
+            </span>
+            <input type="file" id="importCSVInput" accept=".csv" />
+            <span id="csvFileName" class="csv-file-name"></span>
+          </label>
+        </div>
+      </header>
+      <main>
+        <div id="calendarGrid"></div>
+      </main>
+    </div>
+    <div id="modalRoot"></div>
+    <script src="js/visual-bloques.js"></script>
+  </body>
+</html>
